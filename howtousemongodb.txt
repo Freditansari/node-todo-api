@@ -1,0 +1,2 @@
+install mongodb connector: 
+sudo npm install mongodb --save
