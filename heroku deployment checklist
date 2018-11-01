@@ -1,0 +1,6 @@
+1. set port to process.env.PORT.
+2. add Start script in package.json (scripts) "start": "node server/server.js".
+3. tell heroku which node version by adding this line in package .json: 
+ "engines": {
+    "node": "8.10.0"
+  },
