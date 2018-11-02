@@ -4,3 +4,10 @@
  "engines": {
     "node": "8.10.0"
   },
+
+  4. add free heroku mongodb sandbox > sudo heroku addons:create mongolab:sandbox
+  5. change mongoose connect to > mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost:27017/TodoApp');
+  6. go to terminal : heroku create
+  7. to update to heroku git push heroku master
+
+  note: sudo heroku logs to check for problems
