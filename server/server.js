@@ -12,6 +12,7 @@ const {ObjectID}=require('mongodb');
 var {Mongoose} = require('./db/mongoose');
 var {Todo} = require('./db/models/todo');
 var {User} = require('./db/models/user');
+var {authenticate} = require('./middleware/authenticate')
 
 const _ = require('lodash')
 
@@ -95,6 +96,8 @@ app.delete('/todos/:id', (req,res)=>{
 app.patch('/todos/:id', (req,res)=>{
     /**todo describe this function in detail so future me does not become dumb ass
      * 1. install lodash to use this route( sudo npm i lodash --save )
+     * 2. we use lodash pick so that the user control what user can/cannot change
+     *
     */
     
     var id =req.params.id;
@@ -129,6 +132,45 @@ app.patch('/todos/:id', (req,res)=>{
 
 });
 
+/**
+ * USERS
+ */
+app.post('/users', (req, res)=>{
+    //this line is to check request made body  => console.log(req.body);
+
+    var body = _.pick(req.body, ['email', 'password']);
+    
+
+    var user = new User(body);
+    
+
+    user.save().then(()=>{
+        return user.generateAuthToken();
+        //res.send(user);
+
+    }).then((token)=>{
+        //you can disable this "then" to stop user from automatically logged in after sigining up 
+        res.header('x-auth',token).send(user);
+
+    }).catch((e)=>{
+        res.status(400).send(e);
+    });
+});
+
+app.get('/users',(req, res)=>{
+   User.find().then((users)=>{
+        res.send({users});
+    },(e)=>{
+        res.status(400).send(e);
+    });
+});
+
+
+
+app.get('/users/me',authenticate,(req,res)=>{
+    res.send(req.user);
+    
+});
 
 app.listen(port, ()=>{
     console.log('server is started');

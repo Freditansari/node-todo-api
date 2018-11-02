@@ -1,0 +1,2 @@
+1. npm -i jsonwebtoken --save
+2. change the user schema like the one in user.js
