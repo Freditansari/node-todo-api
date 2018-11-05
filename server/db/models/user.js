@@ -1,9 +1,11 @@
 //install validator package from npm i validator --save
+//install bcrypt package from npm i bcryptjs --save
 
 var mongoose= require('mongoose');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
-const _ = require('lodash')
+const _ = require('lodash');
+const bcrypt = require('bcryptjs')
 
 var UserSchema =new mongoose.Schema({
     email:{
@@ -34,6 +36,12 @@ var UserSchema =new mongoose.Schema({
     }]
 });
 
+/**
+ * this method affects all methods accessing User documents in mongodb.
+ * by default it has toJSon and toObject
+ */
+
+
 UserSchema.methods.toJSON = function(){
     var user = this;
     var userObject = user.toObject();
@@ -53,6 +61,10 @@ UserSchema.methods.generateAuthToken = function(){
 };
 
 //statics is almost the same like methods, but only difference it returns model method instead of instance method
+/**
+ * find by token checks the token is actual our server side token or not by verifiying if its true or not. 
+ * It also compares it against the secret.
+ */
 UserSchema.statics.findByToken= function(token){
     var User = this;
     var decoded;
@@ -73,6 +85,34 @@ UserSchema.statics.findByToken= function(token){
         'tokens.access': 'auth'
     });
 };
+
+/**
+ * monggose middleware functions.
+ * https://mongoosejs.com/docs/middleware.html
+ *
+ * this one is before save method being fired. it checks if the user is modified or not.
+ *
+ */
+
+UserSchema.pre('save', function(next){
+    var user = this;
+
+
+    if (user.isModified('password')){
+
+        bcrypt.genSalt(10, (error, salt)=>{
+        bcrypt.hash(user.password, salt, (err,hash)=>{
+                user.password=hash;
+                next();
+
+            });
+        });
+
+
+    }else {
+        next();
+    }
+});
 
 var User = mongoose.model('User',UserSchema);
 module.exports={User};

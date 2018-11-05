@@ -135,6 +135,8 @@ app.patch('/todos/:id', (req,res)=>{
 /**
  * USERS
  */
+
+//this route is for people to register new user. it takes only email and password for now.
 app.post('/users', (req, res)=>{
     //this line is to check request made body  => console.log(req.body);
 
@@ -157,6 +159,7 @@ app.post('/users', (req, res)=>{
     });
 });
 
+//this route  is to get users list from the database. It might be not a good idea to provide this.
 app.get('/users',(req, res)=>{
    User.find().then((users)=>{
         res.send({users});
@@ -166,7 +169,14 @@ app.get('/users',(req, res)=>{
 });
 
 
-
+/**
+ * check the token registered or not. 
+ * if its registered it will gives back email and user ID. if its not it will returns 400 bad request. 
+ * This method is being controlled by authenticate middleware in ./middleware/authenticate.js.
+ * 
+ * Also by putting authenticate method like this. It will ask the user to login and get the jwt token before
+ * accesing the method. 
+ */
 app.get('/users/me',authenticate,(req,res)=>{
     res.send(req.user);
     
