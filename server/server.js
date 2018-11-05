@@ -139,7 +139,7 @@ app.patch('/todos/:id', (req,res)=>{
 //this route is for people to register new user. it takes only email and password for now.
 app.post('/users', (req, res)=>{
     //this line is to check request made body  => console.log(req.body);
-
+    //this line below is to pick only email and password so that clients cannot put in junks into the body
     var body = _.pick(req.body, ['email', 'password']);
     
 
@@ -161,13 +161,45 @@ app.post('/users', (req, res)=>{
 
 //this route  is to get users list from the database. It might be not a good idea to provide this.
 app.get('/users',(req, res)=>{
-   User.find().then((users)=>{
+   User.find({'tokens.access':'admin'}).then((users)=>{
         res.send({users});
     },(e)=>{
         res.status(400).send(e);
     });
 });
 
+// app.post('/users/login', (req, res)=>{
+//     var body = _.pick(req.body, ['email', 'password']);
+//
+//     return User.findByCredentials(body.email, body.password).then((user)=>{
+//         console.log(user);
+//         return user.generateAuthToken().then((token)=>{
+//              res.header('x-auth',token).status(200).send(user);
+//
+//         });
+//
+//     }).catch((error)=>{
+//         res.status(400).send("invalid credentials");
+//     });
+//
+// });
+
+app.post('/users/login', (req, res) => {
+    var body = _.pick(req.body, ['email', 'password']);
+
+
+    User.findByCredentials(body.email, body.password).then((user) => {
+        return user.generateAuthToken().then((token) => {
+            res.header('x-auth',token).status(200).send(user);
+        });
+
+        // console.log(user);
+        // res.status(200).send('OK');
+    }).catch((e) => {
+        res.status(400).send();
+
+    });
+});
 
 /**
  * check the token registered or not. 
@@ -180,6 +212,19 @@ app.get('/users',(req, res)=>{
 app.get('/users/me',authenticate,(req,res)=>{
     res.send(req.user);
     
+});
+
+
+/**
+ * logout method.
+ * */
+app.delete('/users/me/token',authenticate,(req,res)=>{
+    req.user.removeToken(req.token).then(()=>{
+        res.status(200).send();
+    }, () =>{
+        res.status(400).send();
+    });
+
 });
 
 app.listen(port, ()=>{

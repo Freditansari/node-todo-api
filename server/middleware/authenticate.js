@@ -1,4 +1,8 @@
 var {User}=require('../db/models/user')
+/*
+* a middleware will always require next otherwise
+* the program will stop functioning waiting all the time.
+* */
 
 var authenticate =(req, res, next)=>{
     var token = req.header('x-auth');
