@@ -11,3 +11,7 @@
   7. to update to heroku git push heroku master
 
   note: sudo heroku logs to check for problems
+
+
+sudo heroku config:get MONGODB_URI
+mongodb://heroku_zz8v66tv:7aglem5oqpsgahstjtsp804s0l@ds147723.mlab.com:47723/heroku_zz8v66tv

@@ -5,6 +5,7 @@
  */
 var express = require('express');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 const port = process.env.PORT || 3000;
 const {ObjectID}=require('mongodb');
@@ -14,9 +15,11 @@ var {Todo} = require('./db/models/todo');
 var {User} = require('./db/models/user');
 var {authenticate} = require('./middleware/authenticate')
 
+
 const _ = require('lodash')
 
 var app=express();
+app.use(cors());
 
 app.use(bodyParser.json());
 
