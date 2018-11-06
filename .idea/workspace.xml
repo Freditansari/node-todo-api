@@ -57,12 +57,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="heroku deployment checklist" value="3" />
-          <entry key="js" value="3147" />
+          <entry key="js" value="3309" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="3147" />
+          <entry key="JavaScript" value="3309" />
           <entry key="PLAIN_TEXT" value="3" />
         </counts>
       </usages-collector>
@@ -91,7 +91,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/../server/db/models/user.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
+                <state relative-caret-position="480">
                   <caret line="66" selection-start-line="66" selection-end-line="66" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
@@ -117,7 +117,7 @@
             <entry file="file://$PROJECT_DIR$/../server/server.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="420">
-                  <caret line="195" column="62" selection-start-line="195" selection-start-column="62" selection-end-line="195" selection-end-column="62" />
+                  <caret line="195" column="76" selection-start-line="195" selection-start-column="76" selection-end-line="195" selection-end-column="76" />
                 </state>
               </provider>
             </entry>
@@ -215,7 +215,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541473021626" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541476021067" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -246,12 +246,12 @@
       <workItem from="1541267940434" duration="2014000" />
       <workItem from="1541390731896" duration="9268000" />
       <workItem from="1541400723254" duration="8905000" />
-      <workItem from="1541472710285" duration="340000" />
+      <workItem from="1541472710285" duration="3151000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21068000" />
+    <option name="totallyTimeSpent" value="23879000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
@@ -326,7 +326,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../server/db/models/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
+        <state relative-caret-position="480">
           <caret line="66" selection-start-line="66" selection-end-line="66" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -337,7 +337,7 @@
     <entry file="file://$PROJECT_DIR$/../server/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
-          <caret line="195" column="62" selection-start-line="195" selection-start-column="62" selection-end-line="195" selection-end-column="62" />
+          <caret line="195" column="76" selection-start-line="195" selection-start-column="76" selection-end-line="195" selection-end-column="76" />
         </state>
       </provider>
     </entry>
